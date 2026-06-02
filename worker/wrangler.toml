@@ -1,0 +1,8 @@
+name = "bitcraft-wtm-proxy"
+main = "whattomine-proxy.js"
+compatibility_date = "2024-01-01"
+
+# Route: intercepts /api/* on bitcraft.indahl.ai, passes everything else to Render
+routes = [
+  { pattern = "bitcraft.indahl.ai/api/*", zone_name = "indahl.ai" }
+]

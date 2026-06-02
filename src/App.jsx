@@ -121,6 +121,10 @@ function App() {
           </div>
         )}
       </main>
+
+      <footer className="max-w-7xl mx-auto px-6 py-4 text-center text-xs text-[var(--color-text)] opacity-50">
+        Estimates only. BTC price, electricity rates, and hardware degradation will vary.
+      </footer>
     </div>
   );
 }

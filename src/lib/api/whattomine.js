@@ -6,8 +6,8 @@
  * If that happens, swap BASE_URL to a Vercel serverless proxy.
  */
 
-// In production (Vercel), use our serverless proxy to bypass CORS.
-// In dev, use Vite's proxy config.
+// In dev, Vite proxies /api/whattomine to whattomine.com.
+// In production (Render + Cloudflare Worker), same path works via Worker route.
 const BASE_URL = '/api/whattomine';
 
 /**
