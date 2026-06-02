@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/api/whattomine", "destination": "/api/whattomine" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ]
+}
