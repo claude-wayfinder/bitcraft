@@ -13,7 +13,7 @@ export default function Header({ currentPage, setPage }) {
           <span className="text-xl font-bold text-[var(--color-text-bright)]">
             <span className="text-[var(--color-accent)]">Bit</span>Craft
           </span>
-          <span className="text-xs text-[var(--color-text)] opacity-60">to Mine Coin</span>
+          <span className="text-xs text-[var(--color-text)] opacity-60">Link and optimize personal bitcoin miners</span>
         </div>
 
         <nav className="flex gap-1">
