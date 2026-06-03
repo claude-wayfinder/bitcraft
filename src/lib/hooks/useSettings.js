@@ -7,6 +7,8 @@ const DEFAULT_SETTINGS = {
   coolingMethod: 'air',
   currency: 'USD',
   owmApiKey: '',
+  uptimePct: 0.97,       // 97% uptime
+  staleSharePct: 0.01,   // 1% stale shares
 };
 
 /**

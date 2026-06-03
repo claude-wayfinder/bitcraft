@@ -5,6 +5,8 @@ import MineThisNow from './components/dashboard/MineThisNow.jsx';
 import WeatherImpactCard from './components/dashboard/WeatherImpactCard.jsx';
 import CoinProfitTable from './components/dashboard/CoinProfitTable.jsx';
 import ForecastChart from './components/dashboard/ForecastChart.jsx';
+import AssumptionsPanel from './components/dashboard/AssumptionsPanel.jsx';
+import HostingCenters from './components/dashboard/HostingCenters.jsx';
 import RigForm from './components/rigs/RigForm.jsx';
 import RigCard from './components/rigs/RigCard.jsx';
 import PoolComparison from './components/pools/PoolComparison.jsx';
@@ -60,6 +62,8 @@ function App() {
               </div>
             </div>
             <ForecastChart rigs={rigs} coins={coins} forecast={forecast} settings={settings} />
+            <HostingCenters rigs={rigs} coins={coins} weather={weather} settings={settings} />
+            <AssumptionsPanel settings={settings} coins={coins} />
             {rigs.length === 0 && (
               <div className="text-center py-12">
                 <p className="text-[var(--color-text)] mb-4">No rigs configured yet</p>

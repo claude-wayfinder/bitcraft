@@ -71,6 +71,40 @@ export default function SettingsPanel({ settings, updateSetting, weather, setMan
       </div>
 
       <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-6">
+        <h3 className="text-sm font-medium text-[var(--color-text-bright)] mb-4">Slippage & Downtime</h3>
+
+        <div className="space-y-4">
+          <div>
+            <label className="block text-xs text-[var(--color-text)] mb-1">Uptime % (default 97%)</label>
+            <input
+              type="number"
+              step="0.5"
+              min="80"
+              max="100"
+              value={(settings.uptimePct * 100).toFixed(1)}
+              onChange={(e) => updateSetting('uptimePct', Math.min(1, Math.max(0.8, parseFloat(e.target.value) / 100)) || 0.97)}
+              className="w-full bg-[var(--color-surface-2)] border border-[var(--color-border)] rounded px-3 py-2 text-sm text-[var(--color-text-bright)]"
+            />
+            <p className="text-xs text-[var(--color-text)] mt-1">Accounts for reboots, firmware updates, pool outages. 95-98% is typical.</p>
+          </div>
+
+          <div>
+            <label className="block text-xs text-[var(--color-text)] mb-1">Stale Share % (default 1%)</label>
+            <input
+              type="number"
+              step="0.1"
+              min="0"
+              max="10"
+              value={(settings.staleSharePct * 100).toFixed(1)}
+              onChange={(e) => updateSetting('staleSharePct', Math.min(0.1, Math.max(0, parseFloat(e.target.value) / 100)) || 0.01)}
+              className="w-full bg-[var(--color-surface-2)] border border-[var(--color-border)] rounded px-3 py-2 text-sm text-[var(--color-text-bright)]"
+            />
+            <p className="text-xs text-[var(--color-text)] mt-1">Shares submitted too late or rejected by the pool. 0.5-2% is typical.</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-6">
         <h3 className="text-sm font-medium text-[var(--color-text-bright)] mb-4">API Keys</h3>
         <div>
           <label className="block text-xs text-[var(--color-text)] mb-1">OpenWeatherMap API Key</label>

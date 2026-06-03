@@ -1,5 +1,5 @@
 import { coolingCostPerDay } from './cooling.js';
-import { WTM_REFERENCE } from './constants.js';
+import { WTM_REFERENCE, SLIPPAGE_DEFAULTS } from './constants.js';
 
 /**
  * Scale WhatToMine revenue to the user's actual hashrate.
@@ -13,11 +13,21 @@ export function scaledRevenue(rig, coinData) {
 }
 
 /**
+ * Compute the combined slippage multiplier from all real-world loss factors.
+ */
+export function slippageMultiplier(settings) {
+  const uptime = settings.uptimePct ?? SLIPPAGE_DEFAULTS.uptimePct;
+  const stale = settings.staleSharePct ?? SLIPPAGE_DEFAULTS.staleSharePct;
+  return uptime * (1 - stale);
+}
+
+/**
  * Calculate daily profit for a single rig mining a single coin.
- * This is the core formula that combines revenue, power, and cooling.
+ * This is the core formula that combines revenue, power, cooling, and slippage.
  */
 export function dailyProfit(rig, coinData, weather, settings) {
-  const revenue = scaledRevenue(rig, coinData);
+  const grossRevenue = scaledRevenue(rig, coinData);
+  const slip = slippageMultiplier(settings);
 
   const basePowerCost = (rig.power_draw / 1000) * 24 * settings.electricityRate;
 
@@ -29,12 +39,16 @@ export function dailyProfit(rig, coinData, weather, settings) {
     settings.electricityRate
   );
 
-  const effectiveRevenue = revenue * throttleFactor;
+  const effectiveRevenue = grossRevenue * throttleFactor * slip;
+  const slippageLoss = grossRevenue * throttleFactor * (1 - slip);
   const totalCost = basePowerCost + coolingCost;
   const profit = effectiveRevenue - totalCost;
 
   return {
+    grossRevenue,
     revenue: effectiveRevenue,
+    slippageLoss,
+    slippagePct: (1 - slip) * 100,
     powerCost: basePowerCost,
     coolingCost,
     totalCost,

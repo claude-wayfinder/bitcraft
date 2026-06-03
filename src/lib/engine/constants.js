@@ -10,6 +10,14 @@ export const MINERS = {
   'antminer-l9':       { name: 'Antminer L9',        algorithm: 'Scrypt',   hashrate: 16000, hashrateUnit: 'MH/s', power: 3360 },
   'antminer-z15':      { name: 'Antminer Z15',       algorithm: 'Equihash', hashrate: 420,   hashrateUnit: 'kSol/s', power: 1510 },
   'antminer-d9':       { name: 'Antminer D9',        algorithm: 'X11',      hashrate: 1770,  hashrateUnit: 'GH/s', power: 2839 },
+  // GPU miners
+  'nvidia-a4000':      { name: 'NVIDIA A4000',        algorithm: 'Ethash',   hashrate: 68,    hashrateUnit: 'MH/s', power: 140 },
+  'nvidia-a6000':      { name: 'NVIDIA A6000',        algorithm: 'Ethash',   hashrate: 100,   hashrateUnit: 'MH/s', power: 300 },
+  'nvidia-3080':       { name: 'NVIDIA RTX 3080',     algorithm: 'Ethash',   hashrate: 100,   hashrateUnit: 'MH/s', power: 224 },
+  'nvidia-3090':       { name: 'NVIDIA RTX 3090',     algorithm: 'Ethash',   hashrate: 120,   hashrateUnit: 'MH/s', power: 290 },
+  'nvidia-4090':       { name: 'NVIDIA RTX 4090',     algorithm: 'Ethash',   hashrate: 132,   hashrateUnit: 'MH/s', power: 310 },
+  'amd-7900xtx':       { name: 'AMD RX 7900 XTX',     algorithm: 'Ethash',   hashrate: 112,   hashrateUnit: 'MH/s', power: 250 },
+  'iceriver-ks3m':     { name: 'IceRiver KS3M',       algorithm: 'KHeavyHash', hashrate: 6, hashrateUnit: 'TH/s', power: 3400 },
   'custom':            { name: 'Custom Rig',          algorithm: null,       hashrate: null,  hashrateUnit: null, power: null },
 };
 
@@ -50,6 +58,28 @@ export const POOLS = {
 
 // Algorithm-friendly display names
 export const ALGORITHMS = ['SHA-256', 'Scrypt', 'Equihash', 'X11', 'Ethash', 'KHeavyHash'];
+
+// Hosting centers — curated list of reputable colocation facilities
+export const HOSTING_CENTERS = [
+  { name: 'Compute North',     location: 'TX, USA',      rate: 0.055, cooling: 'immersion', reputation: 5, note: 'Tier-1, institutional grade' },
+  { name: 'Blockstream Mining', location: 'QC, Canada',  rate: 0.03,  cooling: 'air', reputation: 5, note: 'Hydro power, very low rates' },
+  { name: 'Whinstone (Riot)',   location: 'TX, USA',      rate: 0.05,  cooling: 'immersion', reputation: 5, note: 'Largest NA facility, 700MW' },
+  { name: 'Core Scientific',    location: 'GA/TX, USA',  rate: 0.06,  cooling: 'air', reputation: 4, note: 'Public company, multiple sites' },
+  { name: 'Bitdeer',            location: 'TX/Norway',   rate: 0.065, cooling: 'air', reputation: 4, note: 'Global, ex-Bitmain' },
+  { name: 'Compass Mining',     location: 'Various USA', rate: 0.07,  cooling: 'air', reputation: 3, note: 'Marketplace model, DYOR on specific hosts' },
+  { name: 'HIVE Digital',       location: 'QC/Sweden',   rate: 0.035, cooling: 'air', reputation: 4, note: '100% green energy' },
+  { name: 'Applied Digital',    location: 'ND, USA',     rate: 0.04,  cooling: 'air', reputation: 4, note: 'Wind + natural gas, cold climate' },
+  { name: 'Mawson Infra',       location: 'PA/GA, USA',  rate: 0.058, cooling: 'air', reputation: 3, note: 'Carbon-neutral focus' },
+  { name: 'Self-host (Home)',   location: 'Your location', rate: null, cooling: null, reputation: null, note: 'Use your own electricity rate + cooling settings' },
+];
+
+// Default slippage assumptions (user-adjustable in settings)
+export const SLIPPAGE_DEFAULTS = {
+  uptimePct: 0.97,           // 97% — accounts for reboots, maintenance
+  staleSharePct: 0.01,       // 1% stale/rejected shares
+  poolLuckVariance: 0.02,    // ±2% multi-day luck variance
+  hardwareDegradation: 0.005, // 0.5% annual hashrate loss from wear
+};
 
 // Cooling method options
 export const COOLING_METHODS = [
